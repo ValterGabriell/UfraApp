@@ -3,19 +3,16 @@ import './App.css';
 import logo from './ufra.png'; // Substitua pelo logo relacionado à agronomia, se disponível.
 
 function App() {
-  const [valueAA, setValueAA] = useState('');
-  const [valueAa, setValueAa] = useState('');
-  const [valueaa, setValueaa] = useState('');
+  const [valueAA, setValueAA] = useState('391');
+  const [valueAa, setValueAa] = useState('198');
+  const [valueaa, setValueaa] = useState('294');
 
   const [showResult, setShowResult] = useState(false);
-
-  const [valueP, setValueP] = useState(null);
-  const [valueQ, setValueQ] = useState(null);
-  const [resultAa, setResultAa] = useState(null);
 
   const [Suffer_AmbAA, setSufferAmbAA] = useState(false);
   const [Suffer_AmbAa, setSufferAmbAa] = useState(false);
   const [Suffer_Ambaa, setSufferAmbaa] = useState(false);
+
 
   const [EstimativaAA, setEstimativaAA] = useState(null);
   const [EstimativaAa, setEstimativaAa] = useState(null);
@@ -24,109 +21,132 @@ function App() {
   const [TotalPop, setTotalPop] = useState(null);
 
   //FREQUENCIA AA
-  const [FAA, setFAA] = useState(null);
+  const [P, setP] = useState(null);
   //FREQUENCIA Aa
-  const [FAa, setFAa] = useState(null);
+  const [H, setH] = useState(null);
   //FREQUENCIA aa
-  const [Faa, setFaa] = useState(null);
+  const [Q, setQ] = useState(null);
   //FREQUENCIA A
   const [FA, setFA] = useState(null);
   //FREQUENCIA a
   const [Fa, setFa] = useState(null);
 
   const handleCalculate = () => {
-
-
     //POPULACAO
     const totPop = parseFloat(valueAA) + parseFloat(valueAa) + parseFloat(valueaa)
     setTotalPop(totPop)
 
     //valor A
-    const p = Math.sqrt((parseFloat(valueAA) || 0))
+    const A = Math.sqrt((parseFloat(valueAA) || 0))
     //valor a
-    const q = Math.sqrt((parseFloat(valueaa) || 0))
+    const a = Math.sqrt((parseFloat(valueaa) || 0))
 
     //Frequencia AA
-    const _FAA = (p * p) / totPop
-    setFAA(_FAA)
-
-    //Frequencia Aa
-    const _FAa = (2 * p * q)
-    setFAa(_FAa)
+    const _P = (A * A) / totPop
+    setP(_P.toFixed(8))
 
     //Frequencia aa
-    const _Faa = (q * q / totPop)
-    setFaa(_Faa)
+    const _Q = (a * a / totPop)
+    setQ(_Q.toFixed(8))
+
+    //Frequencia Aa
+    const _H = 1 - _P - _Q
+    setH(_H.toFixed(8))
 
 
     //Frequencia do A
-    const _FA = _FAA + (_FAa / 2)
-    setFA(_FA)
+    const _FA = _P + (_H / 2)
+    setFA(parseFloat(_FA).toFixed(8))
 
     //Frequencia do a
-    const _Fa = _Faa + (_FAa / 2)
-    setFa(_Fa)
+    const _Fa = _Q + (_H / 2)
+    setFa(parseFloat(_Fa).toFixed(8))
 
-    //valor Aa
-    const valueOfAa = 2 * p * q
 
     //MUTAÇÕES
-    const mutAA = _FAA != 1
-    const mutAa = _FAa != 1
-    const mutaa = _Faa != 1
+    const mutAA = (_FA + _Fa) != 1
+    const mutAa = (_FA + _Fa) != 1
+    const mutaa = (_FA + _Fa) != 1
+
     setSufferAmbAA(mutAA)
     setSufferAmbAa(mutAa)
     setSufferAmbaa(mutaa)
 
     //DESCEDENCIAS
-    const _EstimativaDescendenciaAA = 1 - _FAa - _Faa
-    const _EstimativaDescendenciaAa = 1 - _FAA - _Faa
-    const _EstimativaDescendenciaaa = 1 - _FAA - _FAa
-    setEstimativaAA(_EstimativaDescendenciaAA)
-    setEstimativaAa(_EstimativaDescendenciaAa)
-    setEstimativaaa(_EstimativaDescendenciaaa)
+    const _EstimativaDescendenciaAA = 1 - _H - Q
+    const _EstimativaDescendenciaAa = 1 - P - Q
+    const _EstimativaDescendenciaaa = 1 - P - _H
+    setEstimativaAA(parseFloat(_EstimativaDescendenciaAA).toFixed(8))
+    setEstimativaAa(parseFloat(_EstimativaDescendenciaAa).toFixed(8))
+    setEstimativaaa(parseFloat(_EstimativaDescendenciaaa).toFixed(8))
+    setShowResult(true);
+  };
+
+  const handleCalculate2 = () => {
+    //POPULACAO
+    const totPop = parseFloat(valueAA) + parseFloat(valueAa) + parseFloat(valueaa)
+    setTotalPop(totPop)
+
+    //valor A
+    const A = Math.sqrt((parseFloat(valueAA) || 0))
+    //valor a
+    const a = Math.sqrt((parseFloat(valueaa) || 0))
+
+    //Frequencia AA
+    const _P = (A * A) / totPop
+    setP(_P.toFixed(8))
+
+    //Frequencia aa
+    const _Q = (a * a / totPop)
+    setQ(_Q.toFixed(8))
+
+    //Frequencia Aa
+    const _H = 1 - _P - _Q
+    setH(_H.toFixed(8))
 
 
+    //Frequencia do A
+    const _FA = _P + (_H / 2)
+    setFA(parseFloat(_FA).toFixed(8))
+
+    //Frequencia do a
+    const _Fa = _Q + (_H / 2)
+    setFa(parseFloat(_Fa).toFixed(8))
 
 
-    setValueP(p);
-    setValueQ(q);
-    setResultAa(valueOfAa);
+    //MUTAÇÕES
+    const mutAA = (_FA + _Fa) != 1
+    const mutAa = (_FA + _Fa) != 1
+    const mutaa = (_FA + _Fa) != 1
 
+    setSufferAmbAA(mutAA)
+    setSufferAmbAa(mutAa)
+    setSufferAmbaa(mutaa)
+
+    //DESCEDENCIAS
+    const _EstimativaDescendenciaAA = 1 - _H - Q
+    const _EstimativaDescendenciaAa = 1 - P - Q
+    const _EstimativaDescendenciaaa = 1 - P - _H
+    setEstimativaAA(parseFloat(_EstimativaDescendenciaAA).toFixed(8))
+    setEstimativaAa(parseFloat(_EstimativaDescendenciaAa).toFixed(8))
+    setEstimativaaa(parseFloat(_EstimativaDescendenciaaa).toFixed(8))
     setShowResult(true);
   };
 
 
-
-  const handleCalculateVolta = () => {
-
-    //valor AA
-    const inputValueOfAA = Math.sqrt((parseFloat(FAA) || 0))
-    //valor Aa
-    const inputValueOfAa = Math.sqrt((parseFloat(FAa) || 0))
-    //valor aa
-    const inputValueOfaa = Math.sqrt((parseFloat(Faa) || 0))
-
-    setValueAA(inputValueOfAA)
-    setValueAa(inputValueOfAa)
-    setValueaa(inputValueOfaa)
-
-    setShowResult(true);
-  };
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {!showResult ? (
-
           <div>
             <div className="input-section">
               <h1>Cálculo de Valores</h1>
               <p>Insira os valores para o cálculo:</p>
 
               <div className="input-group">
-                <label>AA</label>
+                <label style={{ color: "#000" }}>AA</label>
                 <input
                   type="number"
                   value={valueAA}
@@ -136,7 +156,7 @@ function App() {
               </div>
 
               <div className="input-group">
-                <label>Aa</label>
+                <label style={{ color: "#000" }}>Aa</label>
                 <input
                   type="number"
                   value={valueAa}
@@ -147,7 +167,7 @@ function App() {
 
               <div className='input-group-row'>
                 <div className="input-group">
-                  <label>aa</label>
+                  <label style={{ color: "#000" }}>aa</label>
                   <input
                     type="number"
                     value={valueaa}
@@ -159,65 +179,23 @@ function App() {
 
               <button onClick={handleCalculate}>Calcular</button>
             </div>
-
-            {/* //VOLTA */}
-            {/*  <div className="input-section">
-              <h1>FAZER A VOLTA</h1>
-              <p>Insira os valores para o cálculo:</p>
-
-              <div className="input-group">
-                <label>Frequência AA</label>
-                <input
-                  type="number"
-                  value={FAA}
-                  onChange={(e) => setFAA(e.target.value)}
-                  placeholder="Valor 1"
-                />
-              </div>
-
-              <div className="input-group">
-                <label>Frequência Aa</label>
-                <input
-                  type="number"
-                  value={FAa}
-                  onChange={(e) => setFa(e.target.value)}
-                  placeholder="Valor 2"
-                />
-              </div>
-
-              <div className='input-group-row'>
-                <div className="input-group">
-                  <label>Frequência aa</label>
-                  <input
-                    type="number"
-                    value={Faa}
-                    onChange={(e) => setFaa(e.target.value)}
-                    placeholder="Valor 3"
-                  />
-                </div>
-              </div>
-
-              <button onClick={handleCalculateVolta}>Calcular Volta</button>
-            </div> */}
           </div>
-
-
         ) : (
           <div>
             <button onClick={() => setShowResult(false)}>Voltar</button>
 
             <h1>Total População: {TotalPop}</h1>
-            <h3>Frequência AA: {FAA}</h3>
-            <h3>Frequência Aa: {FAa}</h3>
-            <h3>Frequência aa: {Faa}</h3>
+            <h3>Frequência P: {P}</h3>
+            <h3>Frequência H: {H}</h3>
+            <h3>Frequência Q: {Q}</h3>
+            <h3>-------------------------</h3>
             <h3>Frequência A: {FA}</h3>
             <h3>Frequência a: {Fa}</h3>
-            <h3>VALOR P: {Math.sqrt((parseFloat(valueAA) || 0))}</h3>
-            <h3>VALOR Q: {Math.sqrt((parseFloat(valueaa) || 0))}</h3>
-
+            <h3>-------------------------</h3>
             <h3>Estimativa para descendência AA: {EstimativaAA}</h3>
             <h3>Estimativa para descendência Aa: {EstimativaAa}</h3>
             <h3>Estimativa para descendência aa: {Estimativaaa}</h3>
+
 
             {/* Acordeão para mostrar valores de AA, Aa e aa */}
             <div>
@@ -225,16 +203,16 @@ function App() {
                 <summary>Ver Valores de AA, Aa e aa</summary>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   <div>
-                    <p>Valor de A:</p>
-                    <p>{valueP}</p>
-                  </div>
-                  <div>
-                    <p>Valor de a:</p>
-                    <p>{valueQ}</p>
+                    <p>Valor de AA:</p>
+                    <p>{valueAA}</p>
                   </div>
                   <div>
                     <p>Valor de Aa:</p>
-                    <p>{resultAa}</p>
+                    <p>{valueAa}</p>
+                  </div>
+                  <div>
+                    <p>Valor de aa:</p>
+                    <p>{valueaa}</p>
                   </div>
                 </div>
               </details>
