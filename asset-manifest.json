@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/UfraApp/static/css/main.f5263f0e.css",
+    "main.js": "/UfraApp/static/js/main.e9863975.js",
+    "static/js/453.86eefcc2.chunk.js": "/UfraApp/static/js/453.86eefcc2.chunk.js",
+    "static/media/ufra.png": "/UfraApp/static/media/ufra.637fa81135a51c571ffb.png",
+    "index.html": "/UfraApp/index.html",
+    "main.f5263f0e.css.map": "/UfraApp/static/css/main.f5263f0e.css.map",
+    "main.e9863975.js.map": "/UfraApp/static/js/main.e9863975.js.map",
+    "453.86eefcc2.chunk.js.map": "/UfraApp/static/js/453.86eefcc2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5263f0e.css",
+    "static/js/main.e9863975.js"
+  ]
+}
