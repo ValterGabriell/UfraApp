@@ -78,9 +78,9 @@ function App() {
     setSufferAmbaa(mutaa)
 
     //DESCEDENCIAS
-    const _EstimativaDescendenciaAA = 1 - H - Q
-    const _EstimativaDescendenciaAa = 1 - P - Q
-    const _EstimativaDescendenciaaa = 1 - P - _H
+    const _EstimativaDescendenciaAA = _p * _p
+    const _EstimativaDescendenciaAa = 2 * _p * _q
+    const _EstimativaDescendenciaaa = _q * _q
     setEstimativaAA(parseFloat(_EstimativaDescendenciaAA).toFixed(8))
     setEstimativaAa(parseFloat(_EstimativaDescendenciaAa).toFixed(8))
     setEstimativaaa(parseFloat(_EstimativaDescendenciaaa).toFixed(8))
