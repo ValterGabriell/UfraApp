@@ -192,19 +192,19 @@ function App() {
                     <p>AA</p>
                     {Suffer_AmbAA ? (
                       <p>População sofre com fatores ambientais</p>
-                    ) : <p>População NÃO com fatores ambientais</p>}
+                    ) : <p> População NÃO sofre com fatores ambientais</p>}
                   </div>
                   <div>
                     <p>Aa</p>
                     {Suffer_AmbAa ? (
                       <p>População sofre com fatores ambientais</p>
-                    ) : <p>População NÃO com fatores ambientais</p>}
+                    ) : <p> População NÃO sofre com fatores ambientais</p>}
                   </div>
                   <div>
                     <p>aa</p>
                     {Suffer_Ambaa ? (
                       <p>População sofre com fatores ambientais</p>
-                    ) : <p>População NÃO com fatores ambientais</p>}
+                    ) : <p> População NÃO sofre com fatores ambientais</p>}
                   </div>
                 </div>
               </details>
