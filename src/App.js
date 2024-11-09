@@ -68,14 +68,7 @@ function App() {
     setFa(parseFloat(_q).toFixed(8))
 
 
-    //MUTAÇÕES
-    const mutAA = (_p + _q) == 1
-    const mutAa = (_p + _q) == 1
-    const mutaa = (_p + _q) == 1
 
-    setSufferAmbAA(mutAA)
-    setSufferAmbAa(mutAa)
-    setSufferAmbaa(mutaa)
 
     //DESCEDENCIAS
     const _EstimativaDescendenciaAA = _p * _p
@@ -84,6 +77,19 @@ function App() {
     setEstimativaAA(parseFloat(_EstimativaDescendenciaAA).toFixed(8))
     setEstimativaAa(parseFloat(_EstimativaDescendenciaAa).toFixed(8))
     setEstimativaaa(parseFloat(_EstimativaDescendenciaaa).toFixed(8))
+
+
+
+    //MUTAÇÕES
+    const mutAA = P == _EstimativaDescendenciaAA
+    const mutAa = H == _EstimativaDescendenciaAa
+    const mutaa = Q == _EstimativaDescendenciaaa
+
+    setSufferAmbAA(mutAA)
+    setSufferAmbAa(mutAa)
+    setSufferAmbaa(mutaa)
+
+
     setShowResult(true);
   };
 
@@ -139,44 +145,6 @@ function App() {
               <button onClick={handleCalculate}>Calcular</button>
             </div>
 
-
-            {/* outo */}
-
-            {/* 
-            <div className="input-section">
-              <h1>Cálculo de Valores</h1>
-              <p>Insira os valores para o cálculo:</p>
-
-
-
-              <div className="input-group">
-                <label style={{ color: "#000" }}>p</label>
-                <input
-                  type="number"
-                  value={p_2}
-                  onChange={(e) => {
-                    setp_2(e.target.value)
-                    setValueAA(e.target.value * e.target.value)
-                  }}
-                  placeholder="Valor 2"
-                />
-              </div>
-
-              <div className='input-group-row'>
-                <div className="input-group">
-                  <label style={{ color: "#000" }}>q</label>
-                  <input
-                    type="number"
-                    value={q_2}
-                    onChange={(e) => {
-                      setQ_2(e.target.value * e.target.value)
-                      setq_2(e.target.value)
-                    }}
-                    placeholder="Valor 3"
-                  />
-                </div>
-              </div>
-            </div> */}
           </div>
         ) : (
           <div>
