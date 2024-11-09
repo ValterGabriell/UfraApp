@@ -69,9 +69,9 @@ function App() {
 
 
     //MUTAÇÕES
-    const mutAA = (_p + _q) != 1
-    const mutAa = (_p + _q) != 1
-    const mutaa = (_p + _q) != 1
+    const mutAA = (_p + _q) == 1
+    const mutAa = (_p + _q) == 1
+    const mutaa = (_p + _q) == 1
 
     setSufferAmbAA(mutAA)
     setSufferAmbAa(mutAa)
@@ -89,56 +89,6 @@ function App() {
 
 
 
-  //CALCULO 2
-  const [P_2, setP_2] = useState(null);
-  const [p_2, setp_2] = useState(null);
-  const [q_2, setq_2] = useState(null);
-  const [Q_2, setQ_2] = useState(null);
-  const handleCalculate2 = () => {
-
-    //POPULACAO
-    const totPop = parseFloat(valueAA) + parseFloat(valueAa) + parseFloat(valueaa)
-    setTotalPop(totPop)
-
-    if (P_2 != 0 || P_2 != undefined) {
-      setP(parseFloat(P_2).toFixed(8))
-    }
-
-    if (Q_2 != 0 || Q_2 != undefined) {
-      setQ(parseFloat(Q_2).toFixed(8))
-    }
-
-    //Frequencia Aa
-    const _H = 1 - P - Q
-    setH(_H.toFixed(8))
-
-    //Frequencia do A
-    const _FA = P + (H / 2)
-    setFA(parseFloat(_FA).toFixed(8))
-
-    //Frequencia do a
-    const _Fa = Q + (H / 2)
-    setFa(parseFloat(_Fa).toFixed(8))
-
-
-    //MUTAÇÕES
-    const mutAA = (_FA + _Fa) != 1
-    const mutAa = (_FA + _Fa) != 1
-    const mutaa = (_FA + _Fa) != 1
-
-    setSufferAmbAA(mutAA)
-    setSufferAmbAa(mutAa)
-    setSufferAmbaa(mutaa)
-
-    //DESCEDENCIAS
-    const _EstimativaDescendenciaAA = 1 - H - Q
-    const _EstimativaDescendenciaAa = 1 - P - Q
-    const _EstimativaDescendenciaaa = 1 - P - H
-    setEstimativaAA(parseFloat(_EstimativaDescendenciaAA).toFixed(8))
-    setEstimativaAa(parseFloat(_EstimativaDescendenciaAa).toFixed(8))
-    setEstimativaaa(parseFloat(_EstimativaDescendenciaaa).toFixed(8))
-    setShowResult(true);
-  };
 
 
 
