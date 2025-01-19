@@ -32,7 +32,8 @@ function App() {
   const [Fa, setFa] = useState(null);
 
 
-
+  const [p, setPzinho] = useState(null);
+  const [q, setQzinho] = useState(null);
 
 
 
@@ -68,7 +69,8 @@ function App() {
     setFa(parseFloat(_q).toFixed(8))
 
 
-
+    setPzinho(_p)
+    setQzinho(_q)
 
     //DESCEDENCIAS
     const _EstimativaDescendenciaAA = _p * _p
@@ -167,69 +169,115 @@ function App() {
 
           </div>
         ) : (
-          <div>
-            <button onClick={() => setShowResult(false)}>Voltar</button>
+          <div style={{ display: 'flex', gap: '100px' }}>
+            <div style={{ flex: 1 }}>
+              <button onClick={() => setShowResult(false)}>Voltar</button>
 
-            <h1>Total População: {TotalPop}</h1>
-            <h3>Frequência P: {P}</h3>
-            <h3>Frequência H: {H}</h3>
-            <h3>Frequência Q: {Q}</h3>
-            <h3>-------------------------</h3>
-            <h3>p: {FA}</h3>
-            <h3>q: {Fa}</h3>
-            <h3>-------------------------</h3>
-            <h3>Estimativa para descendência AA: {EstimativaAA}</h3>
-            <h3>Estimativa para descendência Aa: {EstimativaAa}</h3>
-            <h3>Estimativa para descendência aa: {Estimativaaa}</h3>
+              <h1>Total População: {TotalPop}</h1>
+              <h3>Frequência P: {P}</h3>
+              <h3>Frequência H: {H}</h3>
+              <h3>Frequência Q: {Q}</h3>
+              <h3>-------------------------</h3>
+              <h3>p: {FA}</h3>
+              <h3>q: {Fa}</h3>
+              <h3>-------------------------</h3>
+              <h3>Estimativa para descendência AA: {EstimativaAA}</h3>
+              <h3>Estimativa para descendência Aa: {EstimativaAa}</h3>
+              <h3>Estimativa para descendência aa: {Estimativaaa}</h3>
 
+              {/* Acordeão para mostrar valores de AA, Aa e aa */}
+              <div>
+                <details>
+                  <summary>Ver Valores de AA, Aa e aa</summary>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <div>
+                      <p>Valor de AA:</p>
+                      <p>{valueAA}</p>
+                    </div>
+                    <div>
+                      <p>Valor de Aa:</p>
+                      <p>{valueAa}</p>
+                    </div>
+                    <div>
+                      <p>Valor de aa:</p>
+                      <p>{valueaa}</p>
+                    </div>
+                  </div>
+                </details>
+              </div>
 
-            {/* Acordeão para mostrar valores de AA, Aa e aa */}
-            <div>
-              <details>
-                <summary>Ver Valores de AA, Aa e aa</summary>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <div>
-                    <p>Valor de AA:</p>
-                    <p>{valueAA}</p>
+              <div>
+                <details>
+                  <summary>Fatores Ambientais</summary>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <div>
+                      <p>AA</p>
+                      {Suffer_AmbAA ? (
+                        <p>População sofre com fatores ambientais</p>
+                      ) : (
+                        <p>População NÃO sofre com fatores ambientais</p>
+                      )}
+                    </div>
+                    <div>
+                      <p>Aa</p>
+                      {Suffer_AmbAa ? (
+                        <p>População sofre com fatores ambientais</p>
+                      ) : (
+                        <p>População NÃO sofre com fatores ambientais</p>
+                      )}
+                    </div>
+                    <div>
+                      <p>aa</p>
+                      {Suffer_Ambaa ? (
+                        <p>População sofre com fatores ambientais</p>
+                      ) : (
+                        <p>População NÃO sofre com fatores ambientais</p>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <p>Valor de Aa:</p>
-                    <p>{valueAa}</p>
-                  </div>
-                  <div>
-                    <p>Valor de aa:</p>
-                    <p>{valueaa}</p>
-                  </div>
-                </div>
-              </details>
+                </details>
+              </div>
             </div>
 
-            <div>
+            {/* Seção de Histórico de Cálculo ao lado */}
+            <div style={{ flex: 1, padding: '15px', fontFamily: 'Arial, sans-serif' }}>
               <details>
-                <summary>Fatores Ambientais</summary>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <div>
-                    <p>AA</p>
-                    {Suffer_AmbAA ? (
-                      <p>População sofre com fatores ambientais</p>
-                    ) : <p> População NÃO sofre com fatores ambientais</p>}
-                  </div>
-                  <div>
-                    <p>Aa</p>
-                    {Suffer_AmbAa ? (
-                      <p>População sofre com fatores ambientais</p>
-                    ) : <p> População NÃO sofre com fatores ambientais</p>}
-                  </div>
-                  <div>
-                    <p>aa</p>
-                    {Suffer_Ambaa ? (
-                      <p>População sofre com fatores ambientais</p>
-                    ) : <p> População NÃO sofre com fatores ambientais</p>}
-                  </div>
+                <summary style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>Histórico de Cálculo</summary>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '10px', padding: '15px', fontFamily: 'Arial, sans-serif' }}>
+                  <ul style={{ listStyleType: 'none', paddingLeft: '0' }}>
+                    <li><strong>Genótipos (número de indivíduos)</strong></li>
+                    <li>AA - {valueAA}</li>
+                    <li>Aa - {valueAa}</li>
+                    <li>aa - {valueaa}</li>
+                    <li>Total - {TotalPop}</li>
+
+                    <li><strong>Frequência genotípica:</strong></li>
+                    <li>P = {valueAA}/{TotalPop} = {P}</li>
+                    <li>H = {valueAa}/{TotalPop} = {H}</li>
+                    <li>Q = {valueaa}/{TotalPop} = {Q}</li>
+                    <li>P + H + Q = {P} + {H} + {Q} = {(parseFloat(Q) + parseFloat(P) + parseFloat(H)).toFixed(4)}</li>
+
+                    <li><strong>Frequência gênica:</strong></li>
+                    <li>F(A) = {P} + ½ {H} = {FA}</li>
+                    <li>F(a) = {Q} + ½ {H} = {Fa}</li>
+                    <li>p + q = {(parseFloat(p) + parseFloat(q)).toFixed(4)}</li>
+                    <li>{FA} + {Fa} = {(parseFloat(FA) + parseFloat(Fa)).toFixed(4)}</li>
+
+                    <li><strong>Estimativas para descendência em equilíbrio de Hardy-Weinberg:</strong></li>
+                    <li>p = f(A) = {FA}</li>
+                    <li>q = f(a) = {Fa}</li>
+                    <li>f(AA) = p² = ({parseFloat(FA).toFixed(5)})² = {(parseFloat(FA) * parseFloat(FA)).toFixed(5)}</li>
+                    <li>f(Aa) = 2pq = 2 × {parseFloat(FA).toFixed(5)} × {parseFloat(Fa).toFixed(5)} = {(2 * parseFloat(FA) * parseFloat(Fa)).toFixed(5)}</li>
+                    <li>f(aa) = q² = ({parseFloat(Fa).toFixed(5)})² = {(parseFloat(Fa) * parseFloat(Fa)).toFixed(5)}</li>
+                    <li>p² + 2pq + q² = {(parseFloat(FA) * parseFloat(FA)).toFixed(5)} + {(2 * parseFloat(FA) * parseFloat(Fa)).toFixed(5)} + {(parseFloat(Fa) * parseFloat(Fa)).toFixed(5)} = 1.00000</li>
+                  </ul>
                 </div>
               </details>
+
+              {/* Exemplo de dados do histórico */}
             </div>
           </div>
+
         )}
       </header>
     </div>
