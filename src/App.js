@@ -143,6 +143,26 @@ function App() {
               </div>
 
               <button onClick={handleCalculate}>Calcular</button>
+              <details>
+                <summary>Frequência Gênica (Alélica)</summary>
+                <p style={{ color: "#000" }}>Proporção
+                  dos diferentes alelos de um determinado gene na
+                  população.</p>
+              </details>
+              <details>
+                <summary>Frequência Genotípica</summary>
+                <p style={{ color: "#000" }}>Proporção dos diferentes genótipos na população.</p>
+              </details>
+
+              <details>
+                <summary>Equilíbrio de Hardy-Weinberg</summary>
+                <p style={{ color: "#000" }}>Numa população, sob acasalamento ao acaso, na ausência de migração, mutação e seleção, tanto as frequências gênicas como as genotípicas são constantes de geração em geração, e as frequências genotípicas são determinadas pelas frequências gênicas.</p>
+              </details>
+
+              <details>
+                <summary>Dominância Incompleta</summary>
+                <p style={{ color: "#000" }}>É aquela em que os alelos se expressam em heterozigose, no entanto, produzem fenótipo intermediário, haja vista que nenhum é "dominante".</p>
+              </details>
             </div>
 
           </div>
